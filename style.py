@@ -231,7 +231,7 @@ class Generator(nn.Module):
         x = self.noise4x4_2(x)
         x = self.adain4x4_2(x,denoise)
 
-        x = nn.functional.interpolate(x,scale_factor=2)
+        x = nn.functional.interpolate(x,scale_factor=2,mode='bilinear')
         x = self.conv8x8(x)
         x = self.noise8x8_1(x)
         x = self.adain8x8_1(x,denoise)
@@ -239,7 +239,7 @@ class Generator(nn.Module):
         x = self.noise8x8_2(x)
         x = self.adain8x8_2(x,denoise)
 
-        x = nn.functional.interpolate(x,scale_factor=2)
+        x = nn.functional.interpolate(x,scale_factor=2,mode='bilinear')
         x = self.conv16x16(x)
         x = self.noise16x16_1(x)
         x = self.adain16x16_1(x,denoise)
@@ -247,7 +247,7 @@ class Generator(nn.Module):
         x = self.noise16x16_2(x)
         x = self.adain16x16_2(x,denoise)
 
-        x = nn.functional.interpolate(x,scale_factor=2)
+        x = nn.functional.interpolate(x,scale_factor=2,mode='bilinear')
         x = self.conv32x32(x)
         x = self.noise32x32_1(x)
         x = self.adain32x32_1(x,denoise)
@@ -256,7 +256,7 @@ class Generator(nn.Module):
         x = self.adain32x32_2(x,denoise)
 
         x = self.toRGB(x)
-        
+
         x = nn.functional.tanh(x)
         return x
  
